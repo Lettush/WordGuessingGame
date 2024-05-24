@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: 1.5em;
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.word-div {
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 5px;
+}
+
+.attempts {
+  display: flex;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+}
+
+.letter {
+  font-size: 1.5em;
+  padding: 5px 10px;
+  background-color: #068127;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.letter:disabled {
+  background-color: #2b342e;
+}
