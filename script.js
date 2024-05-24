@@ -31,12 +31,12 @@ function randomWord() {
 function initialize() {
   // initializing/resetting game variables
   let letters = [
-    "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+    "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
   ];
-  let display = ""
+  let display = "";
   attempts = 7;
   guessedLetters = [];
-  secretWord = randomWord();
+  secretWord = randomWord().toUpperCase();
 
   // creating display for word
   for (let i = 0; i < secretWord.length; i++) {
