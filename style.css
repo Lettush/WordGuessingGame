@@ -1,13 +1,16 @@
+/* Root Styling */
+:root {
+  font-size: 1.5em;
+}
+
+/* General Styling */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-:root {
-  font-size: 1.5em;
-}
-
+/* Game Area */
 .game-area {
   display: flex;
   flex-direction: column;
@@ -31,6 +34,25 @@ body {
   text-align: center;
 }
 
+/* Retry Button */
+#retry-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#retry-button:hover {
+  background-color: #45a049;
+}
+
+/* Custom Letter Buttons */
 .keyboard {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -47,5 +69,32 @@ body {
 }
 
 .letter:disabled {
-  background-color: #2b342e;
+  background-color: #616362;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+  .keyboard {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .keyboard {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .title {
+    font-size: 1.8em;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .keyboard {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .title {
+    font-size: 1.5em;
+  }
 }

@@ -121,39 +121,12 @@ const words = [
 const wordDiv = document.querySelector(".word-div");
 const attemptsDiv = document.querySelector(".attempts");
 const keyboardDiv = document.querySelector(".keyboard");
+const retryButton = document.querySelector("#retry-button");
 
 // Creating Game Variables
-const secretWord = randomWord();
-let attempts = 7;
-let guessedLetters = [];
-let letters = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
+let secretWord;
+let attempts;
+let guessedLetters;
 
 // Create Random Word
 function randomWord() {
@@ -161,20 +134,53 @@ function randomWord() {
 }
 
 // Initialize Game Board
-function initialize(word) {
-  let display = "";
+function initialize() {
+  // initializing/resetting game variables
+  let letters = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
+  let display = ""
+  attempts = 7;
+  guessedLetters = [];
+  secretWord = randomWord();
 
-  for (let i = 0; i < word.length; i++) {
-    if (guessedLetters.includes(word.charAt(i))) {
-      display += word.charAt(i);
-    } else {
-      display += "_";
-    }
+  // creating display for word
+  for (let i = 0; i < secretWord.length; i++) {
+    display += "_";
   }
 
+  // initializing/resetting game elements
+  retryButton.style.display = "none";
   wordDiv.innerHTML = display;
   attemptsDiv.innerHTML = `You have ${attempts} attempts left.`;
+  keyboardDiv.innerHTML = "";
 
+  // adding keyboard to game
   letters.forEach((letter) => {
     const letterElement = document.createElement("button");
     letterElement.innerText = letter;
@@ -203,25 +209,39 @@ function guess(word, letter) {
   wordDiv.innerHTML = display;
 
   if (!display.includes("_")) {
-    attemptsDiv.innerHTML = "You guessed the word!";
-    gameOver();
+    gameOver(true);
   } else if (secretWord.includes(letter)) {
     attemptsDiv.innerHTML = `The letter, ${letter}, is in the word! <br> You have ${attempts} attempts left.`;
   } else if (attempts > 1) {
     attempts--;
     attemptsDiv.innerHTML = `You have ${attempts} attempts left.`;
   } else {
-    attemptsDiv.innerHTML = `You failed to guess the word! It was ${secretWord}.`;
-    gameOver();
+    gameOver(false);
   }
 }
 
 // Disable Buttons on Game Over
-function gameOver() {
-  document
-    .querySelectorAll(".letter")
-    .forEach((button) => (button.disabled = true));
+function gameOver(win) {
+  const letterButtons = document.querySelectorAll(".letter");
+  let disabledButtons = 0;
+  letterButtons.forEach((button) => {
+    if (button.disabled) {
+      disabledButtons++;
+    } else {
+      button.disabled = true;
+    }
+  });
+
+  if (win) {
+    attemptsDiv.innerHTML = `You guessed the word! <br> It took you ${disabledButtons} letters to guess it.`;
+  } else {
+    attemptsDiv.innerHTML = `You failed to guess the word! It was ${secretWord}.`;
+  }
+  retryButton.style.display = "block";
 }
 
+// Reset/Retry event
+retryButton.addEventListener("click", initialize);
+
 // Initialize Game Board
-initialize(secretWord);
+initialize();
