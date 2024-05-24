@@ -84,8 +84,12 @@ body {
     grid-template-columns: repeat(6, 1fr);
   }
 
+  .letter {
+    font-size: 1.2em;
+  }
+
   .title {
-    font-size: 1.8em;
+    font-size: 1.6em;
   }
 }
 
@@ -94,7 +98,11 @@ body {
     grid-template-columns: repeat(4, 1fr);
   }
 
+  .letter {
+    font-size: 1em;
+  }
+
   .title {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 }
