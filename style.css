@@ -68,10 +68,12 @@ body {
   color: #fff;
   border: none;
   cursor: pointer;
+  transition: all 0.125s ease;
+  border-radius: 10px;
 }
 
 .letter:hover {
-  background-color: goldenrod;
+  filter: brightness(150%);
 }
 
 .letter:disabled {
