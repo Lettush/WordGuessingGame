@@ -70,6 +70,10 @@ body {
   cursor: pointer;
 }
 
+.letter:hover {
+  background-color: goldenrod;
+}
+
 .letter:disabled {
   background-color: #616362;
 }
